@@ -7,7 +7,7 @@ const _PIC01 = "$_PATH/sunset.jpg";
 const _PIC02 = "$_PATH/dog1.jpg";
 const _PIC03 = "$_PATH/dog2.jpg";
 const _PIC04 = "$_PATH/fox.jpg";
-const _PIC05 = "$_PATH/sping.jpg";
+const _PIC05 = "$_PATH/spring.jpg";
 
 void main() => runApp(MyApp());
 
@@ -35,11 +35,21 @@ class MyPage extends StatelessWidget {
       body: SingleChildScrollView(
           child: Column(
         children: <Widget>[
+          Text("BoxFit=cover"),
           Container(
             constraints: BoxConstraints.expand(height: 300),
             alignment: Alignment.center,
             child: Image.asset(
               _PIC02,
+              fit: BoxFit.cover,
+            ),
+          ),
+          Text("AssetImag, BoxFit=cover"),
+          Container(
+            constraints: BoxConstraints.expand(height: 300),
+            alignment: Alignment.center,
+            child: Image(
+              image: AssetImage(_PIC05),
               fit: BoxFit.cover,
             ),
           ),
@@ -109,17 +119,17 @@ class MyPage extends StatelessWidget {
             ),
           ),
           Text("Boxfit=none, width = 150, height = 150"),
-          SizedBox(width: 100),
           Container(
             color: Colors.blueGrey,
             margin: EdgeInsets.only(bottom: 15),
             width: 150,
             height: 150,
             child: Image.asset(
-              _PIC01,
+              _PIC04,
               fit: BoxFit.none,
             ),
           ),
+
           Text("repeatX"),
           Container(
             constraints: BoxConstraints.expand(height: 50),
@@ -130,6 +140,7 @@ class MyPage extends StatelessWidget {
               fit: BoxFit.contain,
             ),
           ),
+
           Text("color and colorBlendMode"),
           Container(
             margin: EdgeInsets.only(bottom: 15),
@@ -139,6 +150,7 @@ class MyPage extends StatelessWidget {
               colorBlendMode: BlendMode.colorDodge,
             ),
           ),
+
           Text("Image loaded from web"),
           Container(
             color: Colors.black,
