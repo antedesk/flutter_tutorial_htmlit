@@ -53,6 +53,7 @@ class MyPage extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
+
           Text("width = 200, height = 200"),
           Container(
             color: Colors.blueGrey,
@@ -63,6 +64,7 @@ class MyPage extends StatelessWidget {
               width: 200,
             ),
           ),
+
           Text("Boxfit=fill, width = 150, height = 150"),
           Container(
             color: Colors.blueGrey,
@@ -85,6 +87,7 @@ class MyPage extends StatelessWidget {
               width: 150,
             ),
           ),
+
           Text("Boxfit=fitHeight, width = 150, height = 150"),
           Container(
             color: Colors.blueGrey,
@@ -127,6 +130,24 @@ class MyPage extends StatelessWidget {
             child: Image.asset(
               _PIC04,
               fit: BoxFit.none,
+            ),
+          ),
+          Text("FilterQuality.none"),
+          Container(
+            color: Colors.blueGrey,
+            margin: EdgeInsets.only(bottom: 15),
+            child: Image.asset(
+              _PIC05,
+              filterQuality: FilterQuality.none,
+            ),
+          ),
+          Text("FilterQuality.high"),
+          Container(
+            color: Colors.blueGrey,
+            margin: EdgeInsets.only(bottom: 15),
+            child: Image.asset(
+              _PIC05,
+              filterQuality: FilterQuality.high,
             ),
           ),
 
