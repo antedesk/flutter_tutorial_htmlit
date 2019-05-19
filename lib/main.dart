@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
 // Constant variables for the definition of the images' path
 const _PATH = "assets/images";
@@ -169,29 +168,6 @@ class MyPage extends StatelessWidget {
               _PIC04,
               color: Colors.purple,
               colorBlendMode: BlendMode.colorDodge,
-            ),
-          ),
-
-          Text("Image loaded from web"),
-          Container(
-            color: Colors.black,
-            margin: EdgeInsets.only(bottom: 15),
-            child: Image.network(
-                'https://www.html.it/app/themes/html-2018/dist/images/logo-open.png'),
-          ),
-          Text("Image loaded from web and saved in cache"),
-          Container(
-            color: Colors.black,
-            margin: EdgeInsets.only(bottom: 15),
-            child: CachedNetworkImage(
-              imageUrl:
-                  'https://www.html.it/app/themes/html-2018/dist/images/logo-open.png',
-              placeholder: (context, url) => new CircularProgressIndicator(),
-              errorWidget: (context, url, error) => new Icon(
-                    Icons.error,
-                    color: Colors.red,
-                  ),
-              fadeInDuration: Duration(seconds: 3),
             ),
           )
         ],
