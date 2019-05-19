@@ -35,142 +35,6 @@ class MyPage extends StatelessWidget {
       body: SingleChildScrollView(
           child: Column(
         children: <Widget>[
-          Text("BoxFit=cover"),
-          Container(
-            constraints: BoxConstraints.expand(height: 300),
-            alignment: Alignment.center,
-            child: Image.asset(
-              _PIC02,
-              fit: BoxFit.cover,
-            ),
-          ),
-          Text("AssetImag, BoxFit=cover"),
-          Container(
-            constraints: BoxConstraints.expand(height: 300),
-            alignment: Alignment.center,
-            child: Image(
-              image: AssetImage(_PIC05),
-              fit: BoxFit.cover,
-            ),
-          ),
-
-          Text("width = 200, height = 200"),
-          Container(
-            color: Colors.blueGrey,
-            margin: EdgeInsets.only(bottom: 15),
-            child: Image.asset(
-              _PIC01,
-              height: 200,
-              width: 200,
-            ),
-          ),
-
-          Text("Boxfit=fill, width = 150, height = 150"),
-          Container(
-            color: Colors.blueGrey,
-            margin: EdgeInsets.only(bottom: 15),
-            child: Image.asset(
-              _PIC01,
-              fit: BoxFit.fill,
-              height: 150,
-              width: 150,
-            ),
-          ),
-          Text("Boxfit=fitWidth, width = 150, height = 150"),
-          Container(
-            color: Colors.blueGrey,
-            margin: EdgeInsets.only(bottom: 15),
-            child: Image.asset(
-              _PIC01,
-              fit: BoxFit.fitWidth,
-              height: 150,
-              width: 150,
-            ),
-          ),
-
-          Text("Boxfit=fitHeight, width = 150, height = 150"),
-          Container(
-            color: Colors.blueGrey,
-            margin: EdgeInsets.only(bottom: 15),
-            child: Image.asset(
-              _PIC01,
-              fit: BoxFit.fitHeight,
-              height: 150,
-              width: 150,
-            ),
-          ),
-          Text("Boxfit=cover, width = 150, height = 150"),
-          Container(
-            color: Colors.blueGrey,
-            margin: EdgeInsets.only(bottom: 15),
-            child: Image.asset(
-              _PIC01,
-              fit: BoxFit.cover,
-              height: 150,
-              width: 150,
-            ),
-          ),
-          Text("Boxfit=cover, width = 150, height = 150"),
-          Container(
-            color: Colors.blueGrey,
-            margin: EdgeInsets.only(bottom: 15),
-            width: 150,
-            height: 150,
-            child: Image.asset(
-              _PIC01,
-              fit: BoxFit.scaleDown,
-            ),
-          ),
-          Text("Boxfit=none, width = 150, height = 150"),
-          Container(
-            color: Colors.blueGrey,
-            margin: EdgeInsets.only(bottom: 15),
-            width: 150,
-            height: 150,
-            child: Image.asset(
-              _PIC04,
-              fit: BoxFit.none,
-            ),
-          ),
-          Text("FilterQuality.none"),
-          Container(
-            color: Colors.blueGrey,
-            margin: EdgeInsets.only(bottom: 15),
-            child: Image.asset(
-              _PIC05,
-              filterQuality: FilterQuality.none,
-            ),
-          ),
-          Text("FilterQuality.high"),
-          Container(
-            color: Colors.blueGrey,
-            margin: EdgeInsets.only(bottom: 15),
-            child: Image.asset(
-              _PIC05,
-              filterQuality: FilterQuality.high,
-            ),
-          ),
-
-          Text("repeatX"),
-          Container(
-            constraints: BoxConstraints.expand(height: 50),
-            margin: EdgeInsets.only(bottom: 15),
-            child: Image.asset(
-              _PIC03,
-              repeat: ImageRepeat.repeatX,
-              fit: BoxFit.contain,
-            ),
-          ),
-
-          Text("color and colorBlendMode"),
-          Container(
-            margin: EdgeInsets.only(bottom: 15),
-            child: Image.asset(
-              _PIC04,
-              color: Colors.purple,
-              colorBlendMode: BlendMode.colorDodge,
-            ),
-          ),
 
           Text("Image loaded from web"),
           Container(
@@ -179,18 +43,64 @@ class MyPage extends StatelessWidget {
             child: Image.network(
                 'https://www.html.it/app/themes/html-2018/dist/images/logo-open.png'),
           ),
+          Text("GIF loaded from web"),
+          Container(
+            margin: EdgeInsets.only(bottom: 15),
+            child: Image.network(
+                'https://media.giphy.com/media/9LQHvkbIzTSLe/giphy.gif'),
+          ),
+
           Text("Image loaded from web and saved in cache"),
           Container(
             color: Colors.black,
             margin: EdgeInsets.only(bottom: 15),
             child: CachedNetworkImage(
               imageUrl:
-                  'https://www.html.it/app/themes/html-2018/dist/images/logo-open.png',
+              'https://www.html.it/app/themes/html-2018/dist/images/logo-open.png'
+            ),
+          ),
+          Text("Image loaded from web and saved in cache with a placeholder and errorWidget"),
+          Container(
+            color: Colors.black,
+            margin: EdgeInsets.only(bottom: 15),
+            child: CachedNetworkImage(
+              imageUrl:
+              'https://www.html.it/app/themes/html-2018/dist/images/logo-open.png',
               placeholder: (context, url) => new CircularProgressIndicator(),
               errorWidget: (context, url, error) => new Icon(
-                    Icons.error,
-                    color: Colors.red,
-                  ),
+                Icons.error,
+                color: Colors.red,
+              ),
+            ),
+          ),
+          Text("Image loaded with fading, placeholder, and errorWidget"),
+          Container(
+            color: Colors.black,
+            margin: EdgeInsets.only(bottom: 15),
+            child: CachedNetworkImage(
+              imageUrl:
+              'https://www.html.it/app/themes/html-2018/dist/images/logo-open.png',
+              placeholder: (context, url) => new CircularProgressIndicator(),
+              errorWidget: (context, url, error) => new Icon(
+                Icons.error,
+                color: Colors.red,
+              ),
+              fadeInDuration: Duration(seconds: 3),
+            ),
+          ),
+
+          Text("GIF loaded with fading from web and saved in cache"),
+          Container(
+            color: Colors.black,
+            margin: EdgeInsets.only(bottom: 15),
+            child: CachedNetworkImage(
+              imageUrl:
+              'https://media.giphy.com/media/9LQHvkbIzTSLe/giphy.gif',
+              placeholder: (context, url) => new CircularProgressIndicator(),
+              errorWidget: (context, url, error) => new Icon(
+                Icons.error,
+                color: Colors.red,
+              ),
               fadeInDuration: Duration(seconds: 3),
             ),
           )
