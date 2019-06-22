@@ -20,7 +20,7 @@ class MyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Lesson 15 - RaisedButton and SimpleDialog'),
+        title: Text('Lesson 15 - RaisedButton'),
       ),
       body: SingleChildScrollView(
           child: Column(
@@ -54,18 +54,17 @@ class MyPage extends StatelessWidget {
             ),
           ),
           RaisedButton(
-            onPressed: () {
-              print("Button clicked");
-            },
-            child: Text(
-              "Button with colored text, highlight and splash",
-              style: TextStyle(fontSize: 25),
-            ),
-            color: Colors.purple,
-            textColor: Colors.white,
-            highlightColor: Colors.red,
-            splashColor: Colors.black26
-          ),
+              onPressed: () {
+                print("Button clicked");
+              },
+              child: Text(
+                "Button with colored text, highlight and splash",
+                style: TextStyle(fontSize: 25),
+              ),
+              color: Colors.purple,
+              textColor: Colors.white,
+              highlightColor: Colors.red,
+              splashColor: Colors.black26),
           RaisedButton(
             onPressed: null,
             child: Text(
@@ -76,35 +75,32 @@ class MyPage extends StatelessWidget {
             disabledTextColor: Colors.black,
           ),
           RaisedButton(
-            onPressed: () {
-              print("Button clicked");
-            },
-            child: Text(
-              "Button with textTheme:normal",
-              style: TextStyle(fontSize: 20),
-            ),
-            textTheme: ButtonTextTheme.normal
-          ),
+              onPressed: () {
+                print("Button clicked");
+              },
+              child: Text(
+                "Button with textTheme:normal",
+                style: TextStyle(fontSize: 20),
+              ),
+              textTheme: ButtonTextTheme.normal),
           RaisedButton(
-            onPressed: () {
-              print("Button clicked");
-            },
-            child: Text(
-              "Button with textTheme:accent",
-              style: TextStyle(fontSize: 20),
-            ),
-            textTheme: ButtonTextTheme.accent
-          ),
+              onPressed: () {
+                print("Button clicked");
+              },
+              child: Text(
+                "Button with textTheme:accent",
+                style: TextStyle(fontSize: 20),
+              ),
+              textTheme: ButtonTextTheme.accent),
           RaisedButton(
-            onPressed: () {
-              print("Button clicked");
-            },
-            child: Text(
-              "Button with textTheme:primary",
-              style: TextStyle(fontSize: 20),
-            ),
-            textTheme: ButtonTextTheme.primary
-          ),
+              onPressed: () {
+                print("Button clicked");
+              },
+              child: Text(
+                "Button with textTheme:primary",
+                style: TextStyle(fontSize: 20),
+              ),
+              textTheme: ButtonTextTheme.primary),
           RaisedButton(
             onPressed: () {
               print("Button clicked");
@@ -117,6 +113,21 @@ class MyPage extends StatelessWidget {
             ),
             color: Colors.lightBlue,
             textColor: Colors.white,
+            colorBrightness: Brightness.light,
+          ),
+          RaisedButton(
+            onPressed: () {
+              print("click");
+            },
+            child: Text(
+              "textColor orange > textTheme accent > colorBrightness light",
+              style: TextStyle(
+                fontSize: 20,
+              ),
+            ),
+            color: Colors.lightBlue,
+            textTheme: ButtonTextTheme.accent,
+            textColor: Colors.deepOrange,
             colorBrightness: Brightness.light,
           ),
           RaisedButton(
