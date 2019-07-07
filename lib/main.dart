@@ -48,29 +48,60 @@ class MyPage extends StatelessWidget {
       body: SingleChildScrollView(
           child: Column(
         children: <Widget>[
-          // Stack alignment
+          // Stack basic example
+          Text(
+            "Simple Stack",
+            style: TextStyle(color: Colors.black, fontSize: 20),
+          ),
 
+          Container(
+              margin: EdgeInsets.only(top: 10),
+              child: Stack(
+                children: <Widget>[
+                  // Max Size
+                  Container(
+                    color: Colors.orange,
+                    height: 300,
+                    width: 300,
+                  ),
+                  Container(
+                    color: Colors.yellowAccent,
+                    height: 200.0,
+                    width: 200.0,
+                  ),
+                  Container(
+                    color: Colors.greenAccent,
+                    height: 100.0,
+                    width: 100.0,
+                  )
+                ],
+              )),
+
+          // Stack alignment
           Text(
             "Stack with Alignment.centerRight",
             style: TextStyle(color: Colors.black, fontSize: 20),
           ),
           Container(
             margin: EdgeInsets.only(top: 10),
-            color: Colors.deepPurpleAccent,
-            constraints: BoxConstraints.expand(height: 160),
             child: Stack(
               alignment: Alignment.centerRight,
               children: <Widget>[
                 Container(
-                  height: 100,
-                  width: 100,
-                  color: Colors.white,
+                  color: Colors.orange,
+                  height: 300,
+                  width: 300,
                 ),
                 Container(
-                  height: 60,
-                  width: 60,
-                  color: Colors.black,
+                  color: Colors.yellowAccent,
+                  height: 200.0,
+                  width: 200.0,
                 ),
+                Container(
+                  color: Colors.greenAccent,
+                  height: 100.0,
+                  width: 100.0,
+                )
               ],
             ),
           ),
