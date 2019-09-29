@@ -3,109 +3,269 @@ import 'package:flutter/material.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyTabBar(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
+class MyTabBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Text('Lesson 19'),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
+      body: _myTabBarWithCustomLabelAndOnTapEvent(),
+    );
+  }
+
+  Widget _myTabBarBasic() {
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        appBar: AppBar(
+          bottom: TabBar(
+            tabs: [
+              Tab(icon: Icon(Icons.radio_button_unchecked), text: "tab1"),
+              Tab(icon: Icon(Icons.alarm), text: "tab 2"),
+              Tab(icon: Icon(Icons.alarm_add), text: "tab 3"),
+            ],
+          ),
+          title: Text('MyTabBar Title'),
+          backgroundColor: Colors.amber,
+        ),
+        body: TabBarView(
+          children: [
+            Icon(Icons.alarm),
+            Icon(Icons.directions_transit),
+            Icon(Icons.directions_bike)
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+
+  Widget _myTabBarWithScreens() {
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        appBar: AppBar(
+          bottom: TabBar(
+            tabs: [
+              Tab(icon: Icon(Icons.radio_button_unchecked)),
+              Tab(icon: Icon(Icons.alarm)),
+              Tab(icon: Icon(Icons.alarm_add)),
+            ],
+          ),
+          title: Text('MyTabBar Title'),
+          backgroundColor: Colors.amber,
+        ),
+        body: TabBarView(
+          children: [
+            FirstScreen(),
+            SecondScreen(),
+            ThirdScreen()
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _myTabBarWithIndicatorColor() {
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        appBar: AppBar(
+          bottom: TabBar(
+            tabs: [
+              Tab(icon: Icon(Icons.radio_button_unchecked), text: "tab1"),
+              Tab(icon: Icon(Icons.alarm), text: "tab 2"),
+              Tab(icon: Icon(Icons.alarm_add), text: "tab 3"),
+            ],
+            indicatorColor: Colors.red[800],
+            indicatorWeight: 10,
+            indicatorSize: TabBarIndicatorSize.label,
+          ),
+          title: Text('MyTabBar Title'),
+          backgroundColor: Colors.amber,
+        ),
+        body: TabBarView(
+          children: [
+            FirstScreen(),
+            SecondScreen(),
+            ThirdScreen()
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _myTabBarWithCustomIndicator() {
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        appBar: AppBar(
+          bottom: TabBar(
+            tabs: [
+              Tab(icon: Icon(Icons.radio_button_unchecked), text: "tab1"),
+              Tab(icon: Icon(Icons.alarm), text: "tab 2"),
+              Tab(icon: Icon(Icons.alarm_add), text: "tab 3"),
+            ],
+            indicatorColor: Colors.red[800],
+            indicatorWeight: 10,
+            indicatorSize: TabBarIndicatorSize.label,
+            indicator: ShapeDecoration(
+              shape: BeveledRectangleBorder(
+                  side: BorderSide(color: Colors.deepOrange[800]),
+                  borderRadius: BorderRadius.circular(5)),
+            ),
+          ),
+          title: Text('MyTabBar Title'),
+          backgroundColor: Colors.amber,
+        ),
+        body: TabBarView(
+          children: [
+            FirstScreen(),
+            SecondScreen(),
+            ThirdScreen()
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _myTabBarWithCustomLabelAndOnTapEvent() {
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        appBar: AppBar(
+          bottom: TabBar(
+            tabs: [
+              Tab(icon: Icon(Icons.radio_button_unchecked), text: "tab1"),
+              Tab(icon: Icon(Icons.alarm), text: "tab 2"),
+              Tab(icon: Icon(Icons.alarm_add), text: "tab 3"),
+            ],
+            indicatorColor: Colors.red[800],
+            labelColor: Colors.black54,
+            labelPadding: EdgeInsets.symmetric(vertical: 10),
+            labelStyle: TextStyle(fontSize: 20),
+            unselectedLabelColor: Colors.blueGrey[800],
+            unselectedLabelStyle: TextStyle(fontSize: 14),
+            onTap: (index) {
+              var content = "";
+              switch (index) {
+                case 0:
+                  content = "tab 1";
+                  break;
+                case 1:
+                  content = "tab 2";
+                  break;
+                case 2:
+                  content = "tab 3";
+                  break;
+                default:
+                  content = "Nothing selectedcapitankevin88"
+                      "";
+                  break;
+              }
+              print("Clicked on $content");
+            },
+          ),
+          title: Text('MyTabBar Title'),
+          backgroundColor: Colors.amber,
+        ),
+        body: TabBarView(
+          children: [
+            FirstScreen(),
+            SecondScreen(),
+            ThirdScreen()
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _myTabBarWithScrollableTabs() {
+    return DefaultTabController(
+      length: 8,
+      child: Scaffold(
+        appBar: AppBar(
+          bottom: TabBar(
+            tabs: [
+              Tab(icon: Icon(Icons.radio_button_unchecked), text: "tab1"),
+              Tab(icon: Icon(Icons.alarm), text: "tab 2"),
+              Tab(icon: Icon(Icons.alarm_add), text: "tab 3"),
+              Tab(icon: Icon(Icons.alarm_add), text: "tab 4"),
+              Tab(icon: Icon(Icons.alarm_off), text: "tab 5"),
+              Tab(icon: Icon(Icons.alarm_on), text: "tab 6"),
+              Tab(icon: Icon(Icons.access_alarm), text: "tab 7"),
+              Tab(icon: Icon(Icons.camera), text: "tab 8"),
+            ],
+            isScrollable: true,
+          ),
+          title: Text('MyTabBar Title'),
+          backgroundColor: Colors.amber,
+        ),
+        body: TabBarView(
+          children: [
+            Icon(Icons.alarm),
+            Icon(Icons.directions_transit),
+            Icon(Icons.directions_bike),
+            FirstScreen(),
+            SecondScreen(),
+            ThirdScreen(),
+            Icon(Icons.access_alarm),
+            Icon(Icons.camera),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+/*
+ * The following StatelessWidget are here located just for this example.
+ * Please for real application consider to move the code of each TabBarView in
+ * a given .dart file for improving your code quality.
+ * Hence.... NO SPAGHETTI CODE PLZ :)
+ */
+
+class FirstScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: Text('Tab 1 Layout'),
+      ),
+    );
+  }
+}
+
+class SecondScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: Text('Tab 2 Layout'),
+      ),
+    );
+  }
+}
+
+class ThirdScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: Text('Tab 3 Layout'),
+      ),
     );
   }
 }
