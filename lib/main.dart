@@ -7,105 +7,270 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyListViews(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+class MyListViews extends StatelessWidget {
+  Widget _myListView() {
+    return ListView(
+      children: <Widget>[
+        ListTile(
+          title: Text('Article number 1'),
+        ),
+        ListTile(
+          title: Text('Article number 2'),
+        ),
+        ListTile(
+          title: Text('Article number 3'),
+        ),
+        ListTile(
+          title: Text('Article number 4'),
+        ),
+        ListTile(
+          title: Text('Article number 5'),
+        ),
+        ListTile(
+          title: Text('Article number 6'),
+        ),
+        ListTile(
+          title: Text('Article number 7'),
+        ),
+        ListTile(
+          title: Text('Article number 8'),
+        ),
+        ListTile(
+          title: Text('Article number 9'),
+        ),
+        ListTile(
+          title: Text('Article number 10'),
+        ),
+        ListTile(
+          title: Text('Article number 11'),
+        ),
+        ListTile(
+          title: Text('Article number 12'),
+        ),
+      ],
+    );
+  }
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
+  Widget _myListViewWithBasicSeparator(BuildContext context) {
+    return ListView(
+        primary: true,
+        children: ListTile.divideTiles(
+          context: context,
+          tiles: [
+            ListTile(
+              title: Text('Article number 1'),
+            ),
+            ListTile(
+              title: Text('Article number 2'),
+            ),
+            ListTile(
+              title: Text('Article number 3'),
+            ),
+            ListTile(
+              title: Text('Article number 4'),
+            ),
+            ListTile(
+              title: Text('Article number 5'),
+            ),
+            ListTile(
+              title: Text('Article number 6'),
+            ),
+            ListTile(
+              title: Text('Article number 7'),
+            ),
+            ListTile(
+              title: Text('Article number 8'),
+            ),
+            ListTile(
+              title: Text('Article number 9'),
+            )
+          ],
+        ).toList());
+  }
 
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
+  Widget _myListViewBuilder(BuildContext context) {
+    return ListView.builder(
+      itemBuilder: (context, index) {
+        return ListTile(
+          title: Text('Article number $index'),
+        );
+      },
+    );
+  }
 
-  final String title;
+  Widget _myListViewBuilderHorizontal(BuildContext context) {
+    return ConstrainedBox(
+        constraints: new BoxConstraints(
+          maxHeight: 50.0,
+        ),
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) {
+            return Container(
+              margin: const EdgeInsets.symmetric(horizontal: 2, vertical: 2),
+              width: 50,
+              color: Colors.deepOrangeAccent,
+              child: Center(child: Text('$index')),
+            );
+          },
+        ));
+  }
 
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
+  Widget _myListViewWithCustomIconAndCard(BuildContext context) {
+    final titles = [
+      'alarm',
+      'pics',
+      'PDF collection',
+      'camera',
+      'giftcard',
+      'edit',
+      'adb',
+      'zoom in',
+      'zoom out'
+    ];
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+    final icons = [
+      Icons.access_alarm,
+      Icons.collections,
+      Icons.picture_as_pdf,
+      Icons.camera,
+      Icons.card_giftcard,
+      Icons.mode_edit,
+      Icons.adb,
+      Icons.zoom_in,
+      Icons.zoom_out
+    ];
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+    return ListView.builder(
+      itemCount: titles.length,
+      itemBuilder: (context, index) {
+        return Card(
+            child: ListTile(
+              leading: Icon(icons[index], color: Colors.orange[800], size: 20),
+              title: Text(titles[index]),
+            ),
+            elevation: 3,
+            shape: StadiumBorder(
+                side: BorderSide(
+              color: Colors.deepOrange,
+              width: 1.0,
+            )));
+      },
+    );
+  }
+
+  Widget _myListViewWithCustomIconCardAndTouchEvent(BuildContext context) {
+    final titles = [
+      'alarm',
+      'pics',
+      'PDF collection',
+      'camera',
+      'giftcard',
+      'edit',
+      'adb',
+      'zoom in',
+      'zoom out'
+    ];
+
+    final icons = [
+      Icons.access_alarm,
+      Icons.collections,
+      Icons.picture_as_pdf,
+      Icons.camera,
+      Icons.card_giftcard,
+      Icons.mode_edit,
+      Icons.adb,
+      Icons.zoom_in,
+      Icons.zoom_out
+    ];
+
+    return ListView.builder(
+      itemCount: titles.length,
+      itemBuilder: (context, index) {
+        return Card(
+            child: ListTile(
+              leading: Icon(icons[index], color: Colors.orange[800], size: 20),
+              title: Text(titles[index]),
+              onTap: () {
+                print(titles[index]);
+              },
+            ),
+            elevation: 3,
+            shape: StadiumBorder(
+                side: BorderSide(
+              color: Colors.deepOrange,
+              width: 1.0,
+            )));
+      },
+    );
+  }
+
+  Widget _myListViewSeparated(BuildContext context) {
+    return ListView.separated(
+      itemCount: 50,
+      separatorBuilder: (context, int index) {
+        return Container(
+          child: ListTile(
+              title: Text(
+            'SeperatorItem $index',
+            style: TextStyle(color: Colors.white),
+          )),
+          color: Colors.red[900],
+          margin: EdgeInsets.symmetric(vertical: 10),
+        );
+      },
+      itemBuilder: (BuildContext context, int index) {
+        return Card(
+          child: ListTile(
+            leading: const Icon(Icons.accessibility,
+                size: 40.0, color: Colors.white),
+            title: Text('Title $index'),
+            subtitle: Text('SubText'),
+          ),
+          color: Colors.amber,
+        );
+      },
+    );
+  }
+
+  Widget _myListViewSeparatedBasic(BuildContext context) {
+    return ListView.separated(
+      itemCount: 50,
+      separatorBuilder: (BuildContext context, int index) {
+        return Divider(
+          color: Colors.red[900],
+          thickness: 5,
+        );
+      },
+      itemBuilder: (BuildContext context, int index) {
+        return Card(
+          child: ListTile(
+            leading: const Icon(Icons.accessibility,
+                size: 30.0, color: Colors.white),
+            title: Text('Title $index'),
+            subtitle: Text('SubText'),
+          ),
+          color: Colors.amber,
+        );
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Text('Lesson 18'),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      body: _myListViewSeparated(context),
     );
   }
 }
