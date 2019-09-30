@@ -311,3 +311,5 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+ios/Flutter/flutter_export_environment.sh
