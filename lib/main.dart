@@ -21,7 +21,7 @@ class MyTabBar extends StatelessWidget {
       appBar: AppBar(
         title: Text('Lesson 19'),
       ),
-      body: _myBottomTabBar(),
+      body: _myTabBarWithCustomIndicator(),
     );
   }
 
@@ -110,12 +110,12 @@ class MyTabBar extends StatelessWidget {
               Tab(icon: Icon(Icons.alarm_add), text: "tab 3"),
             ],
             indicatorColor: Colors.red[800],
-            indicatorWeight: 10,
-            indicatorSize: TabBarIndicatorSize.label,
+            indicatorWeight: 5,
+            indicatorSize: TabBarIndicatorSize.tab,
             indicator: ShapeDecoration(
               shape: BeveledRectangleBorder(
                   side: BorderSide(color: Colors.deepOrange[800]),
-                  borderRadius: BorderRadius.circular(5)),
+                  borderRadius: BorderRadius.circular(40)),
             ),
           ),
           title: Text('MyTabBar Title'),
