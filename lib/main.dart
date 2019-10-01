@@ -21,7 +21,7 @@ class MyTabBar extends StatelessWidget {
       appBar: AppBar(
         title: Text('Lesson 19'),
       ),
-      body: _myTabBarWithCustomLabelAndOnTapEvent(),
+      body: _myBottomTabBar(),
     );
   }
 
@@ -67,11 +67,7 @@ class MyTabBar extends StatelessWidget {
           backgroundColor: Colors.amber,
         ),
         body: TabBarView(
-          children: [
-            FirstScreen(),
-            SecondScreen(),
-            ThirdScreen()
-          ],
+          children: [FirstScreen(), SecondScreen(), ThirdScreen()],
         ),
       ),
     );
@@ -96,11 +92,7 @@ class MyTabBar extends StatelessWidget {
           backgroundColor: Colors.amber,
         ),
         body: TabBarView(
-          children: [
-            FirstScreen(),
-            SecondScreen(),
-            ThirdScreen()
-          ],
+          children: [FirstScreen(), SecondScreen(), ThirdScreen()],
         ),
       ),
     );
@@ -130,11 +122,7 @@ class MyTabBar extends StatelessWidget {
           backgroundColor: Colors.amber,
         ),
         body: TabBarView(
-          children: [
-            FirstScreen(),
-            SecondScreen(),
-            ThirdScreen()
-          ],
+          children: [FirstScreen(), SecondScreen(), ThirdScreen()],
         ),
       ),
     );
@@ -181,11 +169,27 @@ class MyTabBar extends StatelessWidget {
           backgroundColor: Colors.amber,
         ),
         body: TabBarView(
-          children: [
-            FirstScreen(),
-            SecondScreen(),
-            ThirdScreen()
-          ],
+          children: [FirstScreen(), SecondScreen(), ThirdScreen()],
+        ),
+      ),
+    );
+  }
+
+  Widget _myBottomTabBar() {
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        appBar: AppBar(
+            title: Text('MyTabBar Title'), backgroundColor: Colors.amber),
+        bottomNavigationBar: Container(
+            color: Colors.amber,
+            child: TabBar(tabs: [
+              Tab(icon: Icon(Icons.radio_button_unchecked), text: "tab1"),
+              Tab(icon: Icon(Icons.alarm), text: "tab 2"),
+              Tab(icon: Icon(Icons.alarm_add), text: "tab 3"),
+            ])),
+        body: TabBarView(
+          children: [FirstScreen(), SecondScreen(), ThirdScreen()],
         ),
       ),
     );
@@ -228,7 +232,6 @@ class MyTabBar extends StatelessWidget {
     );
   }
 }
-
 
 /*
  * The following StatelessWidget are here located just for this example.
