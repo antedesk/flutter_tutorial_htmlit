@@ -30,6 +30,57 @@ class MyApp extends StatelessWidget {
   }
 }
 
+class MyScaffoldFABwithSnackBar extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      onPressed: () {
+        SnackBar mySnackBar = SnackBar(
+          content: Text('Hello!'),
+          action: SnackBarAction(
+              label: "CLOSE",
+              textColor: Colors.white,
+              onPressed: () {
+                debugPrint('clicking on CLOSE');
+              }),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+              side: BorderSide(color: Colors.amber, width: 5.0)),
+          backgroundColor: Colors.purple,
+          duration: Duration(milliseconds: 2000),
+        );
+        Scaffold.of(context).showSnackBar(mySnackBar);
+      },
+      child: Icon(Icons.notifications),
+    );
+  }
+}
+
+class MyScaffoldFABwithFloatingSnackBar extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      onPressed: () {
+        SnackBar mySnackBar = SnackBar(
+          content: Text('Hello!'),
+          action: SnackBarAction(
+              label: "CLOSE",
+              textColor: Colors.white,
+              onPressed: () {
+                debugPrint('clicking on CLOSE');
+              }),
+          behavior: SnackBarBehavior.floating,
+          elevation: 8,
+          backgroundColor: Colors.purple,
+          duration: Duration(milliseconds: 2000),
+        );
+        Scaffold.of(context).showSnackBar(mySnackBar);
+      },
+      child: Icon(Icons.notifications),
+    );
+  }
+}
+
 class MyFAB extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -130,55 +181,6 @@ class MyFAB extends StatelessWidget {
       onPressed: () {},
       child: Icon(Icons.email),
       elevation: 10,
-    );
-  }
-}
-
-class MyScaffoldFABwithSnackBar extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return FloatingActionButton(
-      onPressed: () {
-        Scaffold.of(context).showSnackBar(SnackBar(
-          content: Text('Hello!'),
-          action: SnackBarAction(
-              label: "CLOSE",
-              textColor: Colors.white,
-              onPressed: () {
-                debugPrint('clicking on CLOSE');
-              }),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(5)),
-              side: BorderSide(color: Colors.amber, width: 5.0)),
-          backgroundColor: Colors.purple,
-          duration: Duration(milliseconds: 2000),
-        ));
-      },
-      child: Icon(Icons.notifications),
-    );
-  }
-}
-
-class MyScaffoldFABwithFloatingSnackBar extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return FloatingActionButton(
-      onPressed: () {
-        Scaffold.of(context).showSnackBar(SnackBar(
-          content: Text('Hello!'),
-          action: SnackBarAction(
-              label: "CLOSE",
-              textColor: Colors.white,
-              onPressed: () {
-                debugPrint('clicking on CLOSE');
-              }),
-          behavior: SnackBarBehavior.floating,
-          elevation: 8,
-          backgroundColor: Colors.purple,
-          duration: Duration(milliseconds: 2000),
-        ));
-      },
-      child: Icon(Icons.notifications),
     );
   }
 }
