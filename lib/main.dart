@@ -29,7 +29,7 @@ class MyWidgetV1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text('$traveler went to "$country"');
+    return Text('$traveler visited $country');
   }
 
 }
