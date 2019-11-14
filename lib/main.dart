@@ -26,13 +26,13 @@ class MyApp extends StatelessWidget {
       onGenerateRoute: (RouteSettings settings) {
         switch (settings.name) {
           case '/':
-            return MaterialPageRoute(builder: (context)=> HomePageV2());
+            return SlideRightRoute(widget: HomePageV2());
             break;
           case '/newpage':
-            return MaterialPageRoute(builder: (context)=> NewPageV2());
+            return SlideRightRoute(widget: NewPageV2());
             break;
           default:
-            return MaterialPageRoute(builder: (context)=> NotFoundPage());
+            return SlideRightRoute(widget: NotFoundPage());
         }
       },
       */
@@ -212,4 +212,28 @@ class NotFoundPage extends StatelessWidget {
       ),
     );
   }
+}
+
+
+/*
+* Custom animation
+*/
+
+class SlideRightRoute extends PageRouteBuilder {
+  final Widget widget;
+  SlideRightRoute({this.widget})
+      : super(
+      pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+        return widget;
+      },
+      transitionsBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
+        return new SlideTransition(
+          position: new Tween<Offset>(
+            begin: const Offset(-1.0, 0.0),
+            end: Offset.zero,
+          ).animate(animation),
+          child: child,
+        );
+      }
+  );
 }
