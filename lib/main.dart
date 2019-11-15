@@ -32,9 +32,27 @@ class MyApp extends StatelessWidget {
               ),
         ),
       ),*/
+      /*
       routes: <String, WidgetBuilder>{
         '/': (context) => HomePageV2(),
         '/article_details': (context) => ArticleDetailPageV2(),
+      },*/
+
+      home: HomePageV2(),
+      onGenerateRoute: (RouteSettings settings) {
+        switch (settings.name) {
+          case '/':
+            return MaterialPageRoute(builder: (context) => HomePageV2());
+            break;
+          case '/article_details':
+            Article article = settings.arguments;
+            return MaterialPageRoute(
+              builder: (context) => ArticleDetailPage(article: article),
+            );
+            break;
+          default:
+            return MaterialPageRoute(builder: (context) => HomePageV2());
+        }
       },
     );
   }
@@ -153,7 +171,7 @@ class HomePageV2 extends StatelessWidget {
       body: Center(
         child: RaisedButton(
           onPressed: () {
-            Article article = new Article('Article', 'This is a simple text for Article for Named Routing');
+            Article article = new Article('Article', 'This is a simple text for Article');
             Navigator.pushNamed(context, '/article_details', arguments: article);
           },
           child: Text('Open ArticleDetailPage'),
