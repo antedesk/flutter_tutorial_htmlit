@@ -1,33 +1,36 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class FileUtils {
-  Future<String> get _localPath async {
-    final directory = await getApplicationDocumentsDirectory();
-    return directory.path;
+class SharedPreferencesManager {
+  // list of keys to be stored in the SharedPreferences
+  static final String emailKey = "email";
+  static final String notificationKey = "alert";
+  static final String totalItems = "totalItems";
+
+  static Future<SharedPreferences> getSharedPreferencesInstance() async {
+    return await SharedPreferences.getInstance();
   }
 
-  Future<File> get _localFile async {
-    final path = await _localPath;
-    return File('$path/mytext.txt');
-  }
-
-  Future<String> readTextFile() async {
-    try {
-      final file = await _localFile;
-
-      String contents = await file.readAsString();
-
-      return contents;
-    } catch (e) {
-      return "No Data";
+  static void saveKV(String key, dynamic value) async {
+    SharedPreferences sharedPreferences = await getSharedPreferencesInstance();
+    if (value is bool) {
+      sharedPreferences.setBool(key, value);
+    } else if (value is String) {
+      sharedPreferences.setString(key, value);
+    } else if (value is int) {
+      sharedPreferences.setInt(key, value);
+    } else if (value is double) {
+      sharedPreferences.setDouble(key, value);
+    } else if (value is List<String>) {
+      sharedPreferences.setStringList(key, value);
     }
   }
 
-  Future<File> writeTextFile(String myText) async {
-    final file = await _localFile;
-    return file.writeAsString('$myText');
+  static void resetSharedPreferences(List<String> list) async{
+    SharedPreferences sharedPreferences = await getSharedPreferencesInstance();
+    for(String key in list)
+      sharedPreferences.remove(key);
   }
 }
