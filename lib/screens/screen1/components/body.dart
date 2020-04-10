@@ -37,15 +37,11 @@ class _BodyState extends State<Body> {
   }
 
   void _onTotalItemChanged(String value) {
-    setState(() {
       SharedPreferencesManager.saveKV(SharedPreferencesManager.totalItems, int.parse(value));
-    });
   }
 
   void _onEmailChanged(String value) {
-    setState(() {
       SharedPreferencesManager.saveKV(SharedPreferencesManager.emailKey, value);
-    });
   }
 
   @override
