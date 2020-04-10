@@ -1,13 +1,7 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 
-import 'package:flutter_tutorial_htmlit/services/utilities.dart';
-
 class Body extends StatefulWidget {
-  final FileUtils fileUtils;
-
-  Body({Key key, @required this.fileUtils}) : super(key: key);
+  Body({Key key}) : super(key: key);
 
   @override
   _BodyState createState() => _BodyState();
