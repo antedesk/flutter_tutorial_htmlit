@@ -30,7 +30,7 @@ class DBHelper {
     }
   }
 
-  Future<void> createTodoTable(Database db) async {
+  Future<void> createArticleTable(Database db) async {
     final todoSql = '''CREATE TABLE $articlesTable (
       $id INTEGER PRIMARY KEY,
       $title TEXT,
@@ -57,6 +57,6 @@ class DBHelper {
   }
 
   Future<void> onCreate(Database db, int version) async {
-    await createTodoTable(db);
+    await createArticleTable(db);
   }
 }
