@@ -82,8 +82,9 @@ class _Screen1State extends State<Screen1> {
   void _createArticle() async {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
-      int count = await ArticleRepository.articlesCount();
-      final article = Article(count, title, author);
+      title = title != '' ? title : 'No title';
+      author = author != '' ? author : 'No Author';
+      final article = Article(null, title, author);
       await ArticleRepository.addArticle(article);
       setState(() {
         id = article.id;

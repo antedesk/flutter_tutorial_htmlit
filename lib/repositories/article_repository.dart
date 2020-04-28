@@ -1,10 +1,10 @@
 import 'package:flutter_tutorial_htmlit/models/article.dart';
 import 'package:flutter_tutorial_htmlit/repositories/dbhelper.dart';
+import 'package:sqflite/sqflite.dart';
 
 class ArticleRepository {
   static Future<List<Article>> getAllArticles() async {
-    final sql = '''SELECT * FROM ${DBHelper.articlesTable}''';
-    final results = await db.rawQuery(sql);
+    final results = await db.query(DBHelper.articlesTable);
     List<Article> articles = List();
 
     for (final el in results) {
@@ -25,7 +25,7 @@ class ArticleRepository {
     return article;
   }
 
-  static Future<void> addArticle(Article article) async {
+  static Future<void> addArticleRawQuery(Article article) async {
     final sql = '''INSERT INTO ${DBHelper.articlesTable}(
                     ${DBHelper.id},
                     ${DBHelper.title},
@@ -37,33 +37,28 @@ class ArticleRepository {
     DBHelper.dbLogging('Add article', sql, null, result, params);
   }
 
+  static Future<void> addArticle(Article article) async {
+    final result = await db.insert(DBHelper.articlesTable, article.toMap(),
+        conflictAlgorithm: ConflictAlgorithm.replace);
+    DBHelper.dbLogging(
+        'Add article', 'insert', null, result, [article.toMap()]);
+  }
+
   static Future<void> deleteArticle(Article article) async {
-    final sql = '''DELETE FROM ${DBHelper.articlesTable}
-                   WHERE ${DBHelper.id} = ?
-                ''';
+    final result = await db.delete(DBHelper.articlesTable,
+        where: 'id = ?', whereArgs: [article.id]);
 
-    List<dynamic> params = [article.id];
-    final result = await db.rawDelete(sql, params);
-
-    DBHelper.dbLogging('Delete article', sql, null, result, params);
+    DBHelper.dbLogging('Delete article', 'delete', null, result, [article.id]);
   }
 
   static Future<void> updateArticle(Article article) async {
-    final sql = '''UPDATE ${DBHelper.articlesTable}
-                   SET ${DBHelper.title} = ?, ${DBHelper.author} = ?
-                   WHERE ${DBHelper.id} = ?
-                ''';
+    final result = await db.update(DBHelper.articlesTable, article.toMap(),
+        where: 'id = ?',
+        whereArgs: [article.id],
+        conflictAlgorithm: ConflictAlgorithm.replace);
 
-    List<dynamic> params = [article.title, article.id];
-    final result = await db.rawUpdate(sql, params);
-
-    DBHelper.dbLogging('Update article', sql, null, result, params);
+    DBHelper.dbLogging(
+        'Update article', 'update', null, result, [article.toMap()]);
   }
 
-  static Future<int> articlesCount() async {
-    final data =
-        await db.rawQuery('''SELECT COUNT(*) FROM ${DBHelper.articlesTable}''');
-
-    return data[0].values.elementAt(0) + 1;
-  }
 }
